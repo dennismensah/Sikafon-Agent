@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Sikafon.ViewModels;assembly=Sikafon"
+             xmlns:behaviours="clr-namespace:Sikafon.Behaviours;assembly=Sikafon"
+             xmlns:validation="clr-namespace:Sikafon.Validation;assembly=Sikafon"
+             xmlns:customTriggers="clr-namespace:Sikafon.CustomTriggers;assembly=Sikafon"
+             x:Class="Sikafon.Views.HomePage"
+            Title="Sikafon Activation"
+            BarBackgroundColor="OrangeRed"
+            BarTextColor="White">
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Order="Secondary" Text="Logout" Clicked="MenuItem_OnClicked"/>
+    </TabbedPage.ToolbarItems>
+    <TabbedPage.BindingContext>
+        <viewModels:HomeViewModel/>
+    </TabbedPage.BindingContext>
+    <ContentPage Title="New">
+<FlexLayout
+            Direction="Column"
+            AlignItems="Stretch"
+            JustifyContent="Center">
+            <StackLayout Margin="40,10,40,10" Spacing="-6">
+                <StackLayout.Behaviors>
+                    <validation:ValidationGroupBehavior x:Name="form1"/>
+                </StackLayout.Behaviors>
+
+                <Label Text="Activate A Card" FontAttributes="Bold" TextColor="OrangeRed" FontSize="Large" HorizontalOptions="Center" Margin="0,0,0,30"/>
+                <Label Text="Phone Number" TextColor="OrangeRed" FontSize="Small" Margin="0,10,0,10"/>
+                <Entry Text="{Binding PhoneNumber}" x:Name="cphone" Keyboard="Telephone">
+                    <!--<Entry.Behaviors>
+                        <behaviours:ValidationBehavior Group="{x:Reference form1}" 
+                                                       PropertyName="Text">
+                            <behaviours:ValidationBehavior.Validators>
+                                <validation:RequiredValidator />
+                                <validation:FormatValidator
+                                    Message="Mobile number must be 10 digits" 
+                                    Format="^[0-9]{10}$" />
+                            </behaviours:ValidationBehavior.Validators>
+                        </behaviours:ValidationBehavior>
+                    </Entry.Behaviors>-->
+                </Entry>
+
+                <Label Text="Card Number" TextColor="OrangeRed" FontSize="Small" Margin="0,30,0,10"/>
+                <Entry Focused="BtnScan_OnClicked" Text="{Binding CardNumber}" x:Name="cnumber" Keyboard="Text">
+                    <!--<Entry.Behaviors>
+                        <behaviours:ValidationBehavior Group="{x:Reference form1}" 
+                                                       PropertyName="Text">
+                            <behaviours:ValidationBehavior.Validators>
+                                <validation:RequiredValidator />
+                            </behaviours:ValidationBehavior.Validators>
+                        </behaviours:ValidationBehavior>
+                    </Entry.Behaviors>-->
+                </Entry>
+
+                <Button Margin="0,30,0,0" FontSize="Medium" Text="Activate" TextColor="OrangeRed" BackgroundColor="White" CornerRadius="10" 
+                        HeightRequest="62"  BorderColor="OrangeRed" BorderWidth="2"
+                        IsEnabled="{Binding Source={x:Reference form1}, Path= IsValid}" Command="{Binding ActivateCommand}"/>
+            </StackLayout>
+        </FlexLayout>
+    </ContentPage>
+
+    <ContentPage Title="{Binding ALabel}" >
+        <ListView
+            x:Name="listv"
+            HasUnevenRows="True"
+            ItemsSource="{Binding Activations}"
+            IsPullToRefreshEnabled="True"
+            RefreshCommand="{Binding RefreshCommand}"
+            IsRefreshing="{Binding isrefreshing}"
+            BackgroundColor="White"
+            CachingStrategy="RecycleElement">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame
+                            BorderColor="OrangeRed"
+                            BackgroundColor="Wheat"
+                            CornerRadius="7"
+                            Padding="20,20,20,20"
+                            Margin="10,5,10,5">
+                            <StackLayout>
+                                <Label Text="{Binding PhoneNumber}" FontSize="Small" TextColor="OrangeRed"/>
+                                <Label Text="{Binding CardNumber, StringFormat='Card No :   {0}'}" FontSize="Small" TextColor="Black"/>
+                                <Label Text="{Binding ActivationDate}" FontSize="Small" TextColor="Black"/>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Triggers>
+                <EventTrigger Event="ItemSelected">
+                    <customTriggers:DeselectListViewItemAction></customTriggers:DeselectListViewItemAction>
+                </EventTrigger>
+            </ListView.Triggers>
+        </ListView>
+
+    </ContentPage>
+</TabbedPage>

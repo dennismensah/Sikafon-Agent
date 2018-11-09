@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:validation="clr-namespace:Sikafon.Validation;assembly=Sikafon"
+             xmlns:behaviours="clr-namespace:Sikafon.Behaviours;assembly=Sikafon"
+             x:Class="Sikafon.Views.Register"
+             Title="Register" x:Name="Con">
+    <FlexLayout
+            Direction="Column"
+            AlignItems="Stretch"
+            JustifyContent="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8.9*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height=".1*"/>
+
+            </Grid.RowDefinitions>
+            <!--<Grid.Behaviors>
+                    <validation:ValidationGroupBehavior x:Name="form"/>
+                </Grid.Behaviors>-->
+            <ScrollView>
+                <StackLayout Margin="40,10,40,10" Spacing="-6">
+                    <StackLayout.Behaviors>
+                        <validation:ValidationGroupBehavior x:Name="form"/>
+                    </StackLayout.Behaviors>
+                    <Label FontAttributes="Bold" Text="Register An Agent" TextColor="Red" FontSize="Large" HorizontalOptions="Center" Margin="0,0,0,22"/>
+                    <Label Margin="0,0,0,15" Text="First Name" TextColor="Red" FontSize="Small"/>
+                    <Entry  Text="{Binding FirstName}" x:Name="firstname" Keyboard="Text">
+                        <Entry.Behaviors>
+                            <behaviours:ValidationBehavior Group="{x:Reference form}" 
+                                                              PropertyName="Text">
+                                <behaviours:ValidationBehavior.Validators>
+                                    <validation:RequiredValidator />
+                                </behaviours:ValidationBehavior.Validators>
+                            </behaviours:ValidationBehavior>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Margin="0,20,0,15" Text="Last Name" TextColor="Red" FontSize="Small"/>
+                    <Entry  Text="{Binding LastName}" x:Name="lastname" Keyboard="Text">
+                        <Entry.Behaviors>
+                            <behaviours:ValidationBehavior Group="{x:Reference form}" 
+                                                               PropertyName="Text">
+                                <behaviours:ValidationBehavior.Validators>
+                                    <validation:RequiredValidator />
+                                </behaviours:ValidationBehavior.Validators>
+                            </behaviours:ValidationBehavior>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Margin="0,20,0,15" Text="Gender" TextColor="Red" FontSize="Small"/>
+                    <Picker  ItemsSource="{Binding Gender}" x:Name="gender" SelectedItem="{Binding SGender}" SelectedIndex="0"/>
+                    <Label Margin="0,20,0,15" Text="Date Of Birth" TextColor="Red" FontSize="Small"/>
+                    <DatePicker Margin="0,0,0,20" Date="{Binding DateOfBirth}" x:Name="dob"/>
+                    <Label Margin="0,20,0,15" Text="Phone Number" TextColor="Red" FontSize="Small"/>
+                    <Entry  Text="{Binding Phone}" x:Name="phone" Keyboard="Telephone">
+                        <Entry.Behaviors>
+                            <behaviours:ValidationBehavior Group="{x:Reference form}" 
+                                                               PropertyName="Text">
+                                <behaviours:ValidationBehavior.Validators>
+                                    <validation:RequiredValidator />
+                                    <validation:FormatValidator
+                                            Message="Mobile number must be 10 digits" 
+                                            Format="^[0-9]{10}$" />
+                                </behaviours:ValidationBehavior.Validators>
+                            </behaviours:ValidationBehavior>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Margin="0,20,0,15" Text="Email" TextColor="Red" FontSize="Small"/>
+                    <Entry  Text="{Binding Email}" x:Name="email" Keyboard="Email">
+                        <Entry.Behaviors>
+                            <behaviours:ValidationBehavior Group="{x:Reference form}" 
+                                                               PropertyName="Text">
+                                <behaviours:ValidationBehavior.Validators>
+                                    <validation:RequiredValidator />
+                                    <validation:EmailValidator/>
+                                </behaviours:ValidationBehavior.Validators>
+                            </behaviours:ValidationBehavior>
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Margin="0,20,0,15" Text="Username" TextColor="Red" FontSize="Small"/>
+                    <Entry  Text="{Binding Username}" x:Name="username" Keyboard="Text">
+                        <Entry.Behaviors>
+                            <behaviours:ValidationBehavior Group="{x:Reference form}" 
+                                                               PropertyName="Text">
+                                <behaviours:ValidationBehavior.Validators>
+                                    <validation:RequiredValidator />
+                                </behaviours:ValidationBehavior.Validators>
+                            </behaviours:ValidationBehavior>
+                        </Entry.Behaviors>
+
+                    </Entry>
+                    <Label Margin="0,20,0,15" Text="Password" TextColor="Red" FontSize="Small"/>
+                    <Entry  Text="{Binding Password}" IsPassword="True" x:Name="password" Keyboard="Text">
+                        <Entry.Behaviors>
+                            <behaviours:ValidationBehavior Group="{x:Reference form}" 
+                                                               PropertyName="Text">
+                                <behaviours:ValidationBehavior.Validators>
+                                    <validation:RequiredValidator />
+                                    <validation:LengthValidator/>
+                                </behaviours:ValidationBehavior.Validators>
+                            </behaviours:ValidationBehavior>
+                        </Entry.Behaviors>
+
+                    </Entry>
+                </StackLayout>
+            </ScrollView>
+            <Button FontSize="Medium" Margin="40,0,40,0" Grid.Row="1" Text="Register" TextColor="Red" BorderColor="Red" BorderWidth="2"
+                        BackgroundColor="White" CornerRadius="10" HeightRequest="55" Clicked="Button_OnClicked"
+                        IsEnabled="{Binding Source={x:Reference form}, Path= IsValid}"/>
+
+        </Grid>
+    </FlexLayout>
+</ContentPage>

@@ -1,0 +1,6 @@
+# Proguard issue in Forms' version 3.0.0.561731
+# MonoDroid: System.NullReferenceException: Object reference not set to an instance of an object
+# MonoDroid:   at Xamarin.Forms.Platform.Android.FormsAppCompatActivity.InternalSetPage (Xamarin.Forms.Page page) [0x0006f] in <09e4bdebfa024bfd9231e2318fd7c3d7>:0
+# MonoDroid:   at Xamarin.Forms.Platform.Android.FormsAppCompatActivity.SetMainPage () [0x0000c] in <09e4bdebfa024bfd9231e2318fd7c3d7>:0
+
+-keep public class android.support.v7.widget.** { *; }

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sikafon.Views.SplashPage"
+             BackgroundColor="OrangeRed">
+    <AbsoluteLayout AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+        <Label HorizontalOptions="Center" FontSize="29" Text="Sikafon Activation" TextColor="White" x:Name="img" AbsoluteLayout.LayoutBounds="0.5,0.5,1,0.7" AbsoluteLayout.LayoutFlags="All"
+               />
+        <Label Text="Version 1.0.0" TextColor="White" HorizontalTextAlignment="Center"
+               AbsoluteLayout.LayoutBounds="0.5,0.85,150,25" 
+               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        <ActivityIndicator x:Name="loading" IsRunning="True" Color="White"
+                           AbsoluteLayout.LayoutBounds="0.5,0.92,0.08,0.08" 
+                           AbsoluteLayout.LayoutFlags="All"/>
+    </AbsoluteLayout>
+
+</ContentPage>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sikafon.Views.LoginPage"
+             NavigationPage.HasNavigationBar="False">
+    <FlexLayout Direction="Column"
+                AlignItems="Stretch"
+                JustifyContent="SpaceAround" 
+                Margin="50,0,50,0">
+        <StackLayout Spacing="-6">
+            <Label FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" Text="Sikafon Activation" TextColor="Red"/>
+        </StackLayout>
+
+        <StackLayout>
+            <StackLayout Margin="0,0,0,30">
+                <Entry x:Name="Username" FontSize="Medium"  Placeholder="Username" PlaceholderColor="Black" TextColor="Black"/>
+                <Entry x:Name="Password" FontSize="Medium"  Placeholder="Password" PlaceholderColor="Black" TextColor="Black" IsPassword="True"/>
+            </StackLayout>
+            <!--<Label  Text="Forgot Password?" TextColor="Red" HorizontalOptions="End" Margin="0,0,0,5" FontSize="Small" FontAttributes="Bold"/>-->
+            <Button Clicked="Login" Margin="0,0,0,3" BorderColor="Red" BorderWidth="3" Text="Login" FontSize="Small" FontAttributes="Bold" BackgroundColor="White" CornerRadius="10" TextColor="Red" HeightRequest="55"/>
+            <Button Clicked="Register" Text="Create an Account" FontSize="Small" FontAttributes="Bold" BackgroundColor="Red" CornerRadius="10" TextColor="White" HeightRequest="55"/>
+        </StackLayout>
+    </FlexLayout>
+</ContentPage>
